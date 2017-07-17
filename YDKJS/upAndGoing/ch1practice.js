@@ -35,8 +35,37 @@ totalPrice(numPhones);
 
 
 // CONSTANTS
-
 const TAX_RATE_MULTIPLIER = 1.09;
 const PHONE_PRICE = 99.99;
-const ACCESSORY_PRICE = 14.99
-const SPENDING_THRESHOLD = 10.00 // purchase will stop if there is less than $10 in the account
+const ACCESSORY_PRICE = 14.99;
+const SPENDING_THRESHOLD = 10.00; // purchase will stop if there is less than $10 in the account
+
+// VARIABLES
+var bankAccount = prompt("How much money do you have in your entire bank account?");
+var pricePerPhoneAndAccessory = (PHONE_PRICE + ACCESSORY_PRICE) * TAX_RATE_MULTIPLIER;
+pricePerPhoneAndAccessory = pricePerPhoneAndAccessory.toFixed(2);
+var numPhones = 0; // initial number of phones
+
+function buyLotsofPhones() {
+	for (i = 0; i < (Math.floor((bankAccount - SPENDING_THRESHOLD) / pricePerPhoneAndAccessory)); i++) {
+		numPhones++;
+	}
+}
+buyLotsofPhones();
+var totalPrice = (numPhones * pricePerPhoneAndAccessory).toFixed(2);
+var leftOver = bankAccount - totalPrice;
+
+if (numPhones > 0){
+	alert("That'll be $" + totalPrice + " for " + numPhones + " Phones with Accessories, please! " + "And you will have $" + leftOver.toFixed(2) + " left over in your bank account!");
+}
+else {
+	alert("Sorry, you don't have enough money for these goods!  SCRAM!")
+}
+
+// Took about an hour.  First actual functional program.  Committing here and will post up Kyle Simpson's solution commented below.
+
+/* Kyle Simpson's Solution
+
+
+
+*/
