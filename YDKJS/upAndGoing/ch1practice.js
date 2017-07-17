@@ -63,9 +63,52 @@ else {
 }
 
 // Took about an hour.  First actual functional program.  Committing here and will post up Kyle Simpson's solution commented below.
+// Kyle's code is far more simple than mine was.  He created functions to calculate the tax and to format the amount.  Then he made a while loop to continue buying phones while the bank account still had enough money for the phone and the accessory.  Then he added in the tax to the amount and then console.log'd it.  Then he ran a if statement to display that you couldn't afford it, if the items + tax exceeded the value of your bank account.
 
 /* Kyle Simpson's Solution
 
+const SPENDING_THRESHOLD = 200;
+const TAX_RATE = 0.08;
+const PHONE_PRICE = 99.99;
+const ACCESSORY_PRICE = 9.99;
+
+var bank_balance = 303.91;
+var amount = 0;
+
+function calculateTax(amount) {
+	return amount * TAX_RATE;
+}
+
+function formatAmount(amount) {
+	return "$" + amount.toFixed( 2 );
+}
+
+// keep buying phones while you still have money
+while (amount < bank_balance) {
+	// buy a new phone!
+	amount = amount + PHONE_PRICE;
+
+	// can we afford the accessory?
+	if (amount < SPENDING_THRESHOLD) {
+		amount = amount + ACCESSORY_PRICE;
+	}
+}
+
+// don't forget to pay the government, too
+amount = amount + calculateTax( amount );
+
+console.log(
+	"Your purchase: " + formatAmount( amount )
+);
+// Your purchase: $334.76
+
+// can you actually afford this purchase?
+if (amount > bank_balance) {
+	console.log(
+		"You can't afford this purchase. :("
+	);
+}
+// You can't afford this purchase. :(
 
 
 */
