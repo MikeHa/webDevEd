@@ -1,17 +1,18 @@
-p1Count = -10;
+var p1Count = -10;
 
 while (p1Count <= 19) {
 	console.log(p1Count);
 	p1Count++;
 }
 
-p2Count = 10;
+
+var p2Count = 10;
 while (p2Count <= 40) {
 	console.log(p2Count);
 	p2Count+=2;
 }
 
-p3Count = 300;
+var p3Count = 300;
 while (p3Count <= 333) {
 	if ((p3Count % 2) != 0) {
 		console.log(p3Count);
@@ -19,7 +20,7 @@ while (p3Count <= 333) {
 	p3Count++;
 }
 
-p4Count = 5;
+var p4Count = 5;
 while (p4Count <= 50){
 	if ((p4Count % 3 == 0 || p4Count % 5 == 0)) {
 		console.log(p4Count);
