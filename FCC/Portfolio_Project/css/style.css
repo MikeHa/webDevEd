@@ -1,0 +1,70 @@
+.full-height {
+    height: 100vh;
+}
+
+#jumbotron-background {
+    background-image: url(../img/jumbotronbackground.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.introduction {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    width: 100%;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.socialmediablock img {
+    width: 60px;
+}
+
+.content {
+    background-image: url(../img/kimon.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.white-font {
+    color: white;
+    text-shadow: 2px 2px #000;
+}
+
+#about .content .introduction a {
+    color: white;
+    text-decoration: underline;
+}
+
+#about .content .introduction a:hover {
+    color: #d3d3d3;
+}
+
+#portfolio {
+    height: 50vh;
+}
+
+#portfolio h1 {
+    padding-top: 30px;
+}
+
+#contactme {
+    background-color: black;
+    height: 50vh;
+}
+
+#contactme h1 {
+    padding-top: 30px;
+}
+
+#contactme p:first-of-type {
+    padding-top: 30px;
+}
