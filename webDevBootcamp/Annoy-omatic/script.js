@@ -6,3 +6,4 @@ while(response.indexOf("yes") === -1 && response.indexOf("yeah") === -1) {
 }
 
 alert("Yay, we made it!");
+
