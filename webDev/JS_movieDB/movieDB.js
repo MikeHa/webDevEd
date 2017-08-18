@@ -37,14 +37,19 @@ var movies = [
 
 
 // forEach Loop with a result variable
-movies.forEach(function(movie){
+
+function buildString(movie){ // Refactored function
     var result = "You have ";
-    if(movie.hasWatched){
+    if (movie.hasWatched) {
         result += "watched ";
     } else {
         result += "not seen ";
     }
     result += "\"" + movie.title + "\" - ";
-    result += movie.rating + " stars"; 
-    console.log(result);
+    result += movie.rating + " stars";
+    return result;
+}
+
+movies.forEach(function(movie){
+    console.log(buildString(movie));
 });
