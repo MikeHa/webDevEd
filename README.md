@@ -6,6 +6,6 @@ Currently I'm using the following resources.
 * [Colt Steele's Udemy Course](https://www.udemy.com/the-web-developer-bootcamp)
 
 In the Pipeline
-* [Build out Dekibook.com with the MEAN Stack](http://www.dekibook.com]
+* [Build out Dekibook.com with the MEAN Stack](https://www.dekibook.com)
 * Rebuild current client sites into HTML/CSS/JSS and migrate out of Wordpress CMS
 * Being iOS Development Courses
