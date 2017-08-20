@@ -8,4 +8,4 @@ Currently I'm using the following resources.
 In the Pipeline
 * [Build out Dekibook.com with the MEAN Stack](https://www.dekibook.com)
 * Rebuild current client sites into HTML/CSS/JSS and migrate out of Wordpress CMS
-* Being iOS Development Courses
+* Begin iOS Development Courses
