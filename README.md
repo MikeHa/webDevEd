@@ -15,3 +15,4 @@ In the Pipeline
 
 # JS Practice
 * ColorChanger (webDev/JS_ColorChanger)
+* Score Keeper (webDev/Project_ScoreKeeper)
