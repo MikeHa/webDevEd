@@ -1,5 +1,5 @@
 # My Repo
-Hi, my name is Mike Ha.  There's a lot to do here.  Let's go!
+Hi, my name is Mike Ha.
 
 # JS Practice
 * ColorChanger (webDev/JS_ColorChanger)
