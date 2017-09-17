@@ -1,27 +1,48 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
+var express       = require("express"),
+    app           = express(),
+    bodyParser    = require("body-parser"),
+    mongoose      = require("mongoose");
+
+mongoose.connect("mongodb://localhost/yelp_camp", { useMongoClient: true });
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "EJS");
 
-var campgrounds = [
-  { name: "Bear Lake", image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg" }, 
-  { name: "Tanker Hill", image: "https://farm6.staticflickr.com/5181/5641024448_04fefbb64d.jpg" }, 
-  { name: "Buttercake Ranch", image: "https://farm4.staticflickr.com/3270/2617191414_c5d8a25a94.jpg" },
-  { name: "Bear Lake", image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg" }, 
-  { name: "Tanker Hill", image: "https://farm6.staticflickr.com/5181/5641024448_04fefbb64d.jpg" }, 
-  { name: "Buttercake Ranch", image: "https://farm4.staticflickr.com/3270/2617191414_c5d8a25a94.jpg" },
-  { name: "Bear Lake", image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg" }, 
-  { name: "Tanker Hill", image: "https://farm6.staticflickr.com/5181/5641024448_04fefbb64d.jpg" }, 
-  { name: "Buttercake Ranch", image: "https://farm4.staticflickr.com/3270/2617191414_c5d8a25a94.jpg" }
-];
+// SCHEMA SETUP
+var campgroundSchema = new mongoose.Schema({
+  name: String,
+  image: String
+});
+
+var Campground = mongoose.model("Campground", campgroundSchema);
+
+// Campground.create(
+//   {
+//     name: "Tanker Hill", 
+//     image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg"
+//   }, function(err, campground){
+//     if(err){
+//       console.log(err);
+//     } else {
+//       console.log("NEWLY CREATED CAMPGROUND");
+//       console.log(campground);
+//     }
+//   });
 
 app.get("/", function(req, res){
   res.render("landing");
 })
 
 app.get("/campgrounds", function(req, res){
-  res.render("campgrounds", {campgrounds:campgrounds});
+  // Get all campgrounds from DB
+  Campground.find({}, function(err, allCampgrounds){
+    if(err){
+      console.log(err);
+    } else {
+    res.render("campgrounds", {campgrounds:allCampgrounds});
+    }
+  })
+
+
 })
 
 app.post("/campgrounds", function(req, res){
@@ -29,9 +50,15 @@ app.post("/campgrounds", function(req, res){
   var name = req.body.name;
   var image = req.body.image;
   var newCampground = {name: name, image: image}
-  campgrounds.push(newCampground);
+  // Create a new campground and save to DB
+  Campground.create(newCampground, function(err, newlyCreated){
+    if(err){
+      console.log(err);
+    } else {
+      res.redirect("/campgrounds");
+    }
+  })
   // redirect back to campgrounds page
-  res.redirect("/campgrounds");
 })
 
 app.get("/campgrounds/new", function(req, res){
