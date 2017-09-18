@@ -10,7 +10,8 @@ app.set("view engine", "EJS");
 // SCHEMA SETUP
 var campgroundSchema = new mongoose.Schema({
   name: String,
-  image: String
+  image: String,
+  description: String
 });
 
 var Campground = mongoose.model("Campground", campgroundSchema);
@@ -18,7 +19,8 @@ var Campground = mongoose.model("Campground", campgroundSchema);
 // Campground.create(
 //   {
 //     name: "Tanker Hill", 
-//     image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg"
+//     image: "https://farm8.staticflickr.com/7252/7626464792_3e68c2a6a5.jpg",
+//     description: "This is an awesome Tanker Hill.  Lots of tanks.  No water"
 //   }, function(err, campground){
 //     if(err){
 //       console.log(err);
@@ -32,24 +34,25 @@ app.get("/", function(req, res){
   res.render("landing");
 })
 
+// INDEX - show all campgrounds
 app.get("/campgrounds", function(req, res){
   // Get all campgrounds from DB
   Campground.find({}, function(err, allCampgrounds){
     if(err){
       console.log(err);
     } else {
-    res.render("campgrounds", {campgrounds:allCampgrounds});
+    res.render("index", {campgrounds:allCampgrounds});
     }
   })
-
-
 })
 
+// CREATE - add new campground to database
 app.post("/campgrounds", function(req, res){
   // get data from form and add to campgrounds array
   var name = req.body.name;
   var image = req.body.image;
-  var newCampground = {name: name, image: image}
+  var desc = req.body.description;
+  var newCampground = {name: name, image: image, description: desc}
   // Create a new campground and save to DB
   Campground.create(newCampground, function(err, newlyCreated){
     if(err){
@@ -58,11 +61,24 @@ app.post("/campgrounds", function(req, res){
       res.redirect("/campgrounds");
     }
   })
-  // redirect back to campgrounds page
 })
 
+// NEW - show form to create new campground
 app.get("/campgrounds/new", function(req, res){
   res.render("new");
+})
+
+// SHOW - shows more info about one campground
+app.get("/campgrounds/:id", function(req, res){
+  // find the campground with PROVIDED ID
+  Campground.findById(req.params.id, function(err, foundCampground){
+    if(err){
+      console.log(err)
+    } else {
+      //render tempalte with that campground
+      res.render("show", {campground: foundCampground});
+    }
+  })
 })
 
 app.listen(3000, 'localhost', function(){
