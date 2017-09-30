@@ -7,3 +7,8 @@ body {
 input {
   text-align: center;
 }
+
+input:disabled, input[readonly], textarea:disabled, textarea[readonly] {
+    background-color: rgb(255, 255, 255);
+    cursor: not-allowed;
+}
