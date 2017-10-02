@@ -1,7 +1,7 @@
 "use strict";
 
 var normal = {
-  // initial normal sales values
+  // initial values
   totalSales: 0,
   wineSales: 0,
   ccTips: 0,
@@ -13,7 +13,7 @@ var normal = {
 };
 
 var autograt = {
-  // initial autograt sales values
+  // initial values
   totalSales: 0,
   wineSales: 0,
   ccTips: 0,
@@ -25,7 +25,7 @@ var autograt = {
 };
 
 var tipOutPercent = {
-  // restaurant-determined tip percentages
+  // predetermined percentages as whole numbers
   normal: {
     bar: 1.25,
     runner: 1.675,
@@ -46,7 +46,7 @@ var tipOutPercent = {
 };
 
 var extraTip = {
-  // baristas and backwaiters get additional fixed tips on one side
+  // baristas and backwaiters additional fixed dollar tips
   barista: 10,
   backwaiter: 4
 };
@@ -82,11 +82,12 @@ function calculateTipOut(sales, percent) {
   return (Math.ceil(sales * percent) / 100).toFixed(2);
 }
 
+// get integer value from id
 function num(id) {
-  // get number value from id
   return Number($(id).val());
 }
 
+// get number value HTML
 function getNum(id){
   return document.getElementById(id).innerHTML;
 }
@@ -160,14 +161,14 @@ function calculateAll() {
   var subPosition = ["bar", "runner", "somm", "host", "barista", "backwaiter", "autograthousefee"];
   
   document.getElementById("normaldeclared").innerHTML = (normal.ccTips -
-   get("normalbar") - get("normalrunner") - get("normalsomm") - get("normalhost") - get("normalbarista") - get("normalbackwaiter")).toFixed(2);
+    get("normalbar") - get("normalrunner") - get("normalsomm") - get("normalhost") - get("normalbarista") - get("normalbackwaiter")).toFixed(2);
   
   document.getElementById("autogratdeclared").innerHTML = (autograt.ccTips -
-  get("autogratbar") - get("autogratrunner") - get("autogratsomm") - get("autograthost") - get("autogratbarista") - get("autogratbackwaiter") - get("autograthousefee")).toFixed(2);
+    get("autogratbar") - get("autogratrunner") - get("autogratsomm") - get("autograthost") - get("autogratbarista") - get("autogratbackwaiter") - get("autograthousefee")).toFixed(2);
 
 }
 
-// Calculate Event
+// Calculation Event
 $(".calculate").on('click touchstart', function() {
   calculateAll();
 })
