@@ -82,50 +82,55 @@ function calculateTipOut(sales, percent) {
   return (Math.ceil(sales * percent) / 100).toFixed(2);
 }
 
+function num(id) {
+  // get number value from id
+  return Number($(id).val());
+}
+
+function getNum(id){
+  return document.getElementById(id).innerHTML;
+}
+
 // Additional tips for Barista and Backwaiters fixed normal side.  If no fixed sales for the day, apply to autograt side.
 function extraFixedBarista() {
-  if (document.getElementById("normalbarista").innerHTML > 0) {
-    document.getElementById("normalbarista").innerHTML = (Number(
-      document.getElementById("normalbarista").innerHTML
-    ) + extraTip.barista).toFixed(2);
-  } else if (document.getElementById("autogratbarista").innerHTML > 0) {
-    document.getElementById("autogratbarista").innerHTML = (Number(
-      document.getElementById("autogratbarista").innerHTML
-    ) + extraTip.barista).toFixed(2);
+  var normalBarista = getNum("normalbarista");
+  var autoBarista = getNum("autogratbarista");
+  if (normalBarista > 0) {
+    document.getElementById("normalbarista").innerHTML = (Number(normalBarista) + extraTip.barista).toFixed(2);
+  } else if (autoBarista > 0) {
+    document.getElementById("autogratbarista").innerHTML = (Number(autoBarista) + extraTip.barista).toFixed(2);
   }
 }
 
 function extraFixedBackwaiter() {
-  if (document.getElementById("normalbackwaiter").innerHTML > 0) {
-    document.getElementById("normalbackwaiter").innerHTML = (Number(
-      document.getElementById("normalbackwaiter").innerHTML
-    ) + extraTip.backwaiter).toFixed(2);
-  } else if (document.getElementById("autogratbackwaiter").innerHTML > 0) {
-    document.getElementById("autogratbackwaiter").innerHTML = (Number(
-      document.getElementById("autogratbackwaiter").innerHTML
-    ) + extraTip.backwaiter).toFixed(2);
+  var normalBW = getNum("normalbackwaiter");
+  var autoBW = getNum("autogratbackwaiter");
+  if (normalBW > 0) {
+    document.getElementById("normalbackwaiter").innerHTML = (Number(normalBW) + extraTip.backwaiter).toFixed(2);
+  } else if (autoBW > 0) {
+    document.getElementById("autogratbackwaiter").innerHTML = (Number(autoBW) + extraTip.backwaiter).toFixed(2);
   }
 }
 
 // Calculations
 function calculateAll() {
   //Data
-  normal.totalSales = Number($("#normaltotalsales").val());
-  normal.wineSales = Number($("#normalwinesales").val());
-  normal.ccTips = Number($("#normalcctips").val());
-  normal.transfers = Number($("#normaltransfers").val());
-  normal.wineTransfers = Number($("#normalwinetransfers").val());
-  autograt.totalSales = Number($("#autograttotalsales").val());
-  autograt.wineSales = Number($("#autogratwinesales").val());
-  autograt.ccTips = Number($("#autogratcctips").val());
-  autograt.transfers = Number($("#autograttransfers").val());
-  autograt.wineTransfers = Number($("#autogratwinetransfers").val());
+  normal.totalSales = num("#normaltotalsales");
+  normal.wineSales = num("#normalwinesales");
+  normal.ccTips = num("#normalcctips");
+  normal.transfers = num("#normaltransfers");
+  normal.wineTransfers = num("#normalwinetransfers");
+  autograt.totalSales = num("#autograttotalsales");
+  autograt.wineSales = num("#autogratwinesales");
+  autograt.ccTips = num("#autogratcctips");
+  autograt.transfers = num("#autograttransfers");
+  autograt.wineTransfers = num("#autogratwinetransfers");
+  normal.backwaiterBump = num("#normalbackwaiterbump");
+  autograt.backwaiterBump = num("#autogratbackwaiterbump");
   normal.tippableSales = calculateTippableSales(normal.totalSales, normal.transfers);
   normal.tippableWineSales = calculateTippableSales(normal.wineSales,normal.wineTransfers);
   autograt.tippableSales = calculateTippableSales(autograt.totalSales, autograt.transfers);
   autograt.tippableWineSales = calculateTippableSales(autograt.wineSales, autograt.wineTransfers);
-  normal.backwaiterBump = Number($("#normalbackwaiterbump").val());
-  autograt.backwaiterBump = Number($("#autogratbackwaiterbump").val());
 
   // Filing in Calculations
   document.getElementById("normalhousefee").innerHTML = "N/A";
@@ -141,38 +146,33 @@ function calculateAll() {
   document.getElementById("normalbarista").innerHTML = calculateTipOut(normal.tippableSales,tipOutPercent.normal.barista);
   document.getElementById("autogratbarista").innerHTML = calculateTipOut(autograt.tippableSales,tipOutPercent.autograt.barista);
   document.getElementById("normalbackwaiter").innerHTML = Number(calculateTipOut(normal.tippableSales, tipOutPercent.normal.backwaiter)) + Number(normal.backwaiterBump);
-  document.getElementById("autogratbackwaiter").innerHTML = Number(calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.backwaiter)) + Number(autograt.backwaiterBump);
+  document.getElementById("autogratbackwaiter").innerHTML = (Number(calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.backwaiter)) + Number(autograt.backwaiterBump)).toFixed(2);
 
   // Extra Fixed Tips
   extraFixedBarista();
   extraFixedBackwaiter();
 
   // Math for the declared
+  function get(name) {
+    return document.getElementById(name).innerHTML;
+  }
+  
+  var subPosition = ["bar", "runner", "somm", "host", "barista", "backwaiter", "autograthousefee"];
+  
   document.getElementById("normaldeclared").innerHTML = (normal.ccTips -
-    document.getElementById("normalbar").innerHTML -
-    document.getElementById("normalrunner").innerHTML -
-    document.getElementById("normalsomm").innerHTML -
-    document.getElementById("normalhost").innerHTML -
-    document.getElementById("normalbarista").innerHTML -
-    document.getElementById("normalbackwaiter").innerHTML).toFixed(2);
-    
+   get("normalbar") - get("normalrunner") - get("normalsomm") - get("normalhost") - get("normalbarista") - get("normalbackwaiter")).toFixed(2);
+  
   document.getElementById("autogratdeclared").innerHTML = (autograt.ccTips -
-    document.getElementById("autogratbar").innerHTML -
-    document.getElementById("autogratrunner").innerHTML -
-    document.getElementById("autogratsomm").innerHTML -
-    document.getElementById("autograthost").innerHTML -
-    document.getElementById("autogratbarista").innerHTML -
-    document.getElementById("autogratbackwaiter").innerHTML -
-    document.getElementById("autograthousefee").innerHTML).toFixed(2);
+  get("autogratbar") - get("autogratrunner") - get("autogratsomm") - get("autograthost") - get("autogratbarista") - get("autogratbackwaiter") - get("autograthousefee")).toFixed(2);
+
 }
 
-
+// Calculate Event
 $(".calculate").on('click touchstart', function() {
   calculateAll();
-});
+})
 
 $("input").on("keydown", function(e) {
   if (e.which == 13) {
     calculateAll();
-  }
-});
+  }})
