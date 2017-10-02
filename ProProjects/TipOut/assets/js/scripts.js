@@ -171,6 +171,10 @@ function calculateAll() {
 // Calculation Event
 $(".calculate").on('click touchstart', function() {
   calculateAll();
+
+  $("html,body").animate({ 
+    scrollTop: $("#results").offset().top }, 
+    'slow');
 })
 
 $("input").on("keydown", function(e) {
