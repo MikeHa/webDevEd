@@ -133,7 +133,7 @@ function calculateAll() {
   autograt.tippableSales = calculateTippableSales(autograt.totalSales, autograt.transfers);
   autograt.tippableWineSales = calculateTippableSales(autograt.wineSales, autograt.wineTransfers);
 
-  // Filing in Calculations
+  // Binding Data to span
   document.getElementById("normalhousefee").innerHTML = "N/A";
   document.getElementById("autograthousefee").innerHTML = calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.house);
   document.getElementById("normalbar").innerHTML = calculateTipOut(normal.tippableSales, tipOutPercent.normal.bar);
@@ -149,11 +149,11 @@ function calculateAll() {
   document.getElementById("normalbackwaiter").innerHTML = Number(calculateTipOut(normal.tippableSales, tipOutPercent.normal.backwaiter)) + Number(normal.backwaiterBump);
   document.getElementById("autogratbackwaiter").innerHTML = (Number(calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.backwaiter)) + Number(autograt.backwaiterBump)).toFixed(2);
 
-  // Extra Fixed Tips
+  // Extra Fixed Tips for two departments
   extraFixedBarista();
   extraFixedBackwaiter();
 
-  // Math for the declared
+  // Declared Calculations
   function get(name) {
     return document.getElementById(name).innerHTML;
   }
@@ -168,7 +168,7 @@ function calculateAll() {
 
 }
 
-// Calculation Event
+// Calculation onEvent
 $(".calculate").on('click touchstart', function() {
   calculateAll();
   $("html,body").animate({ 
