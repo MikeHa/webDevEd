@@ -2,10 +2,10 @@
 Hi, my name is Mike Ha.
 
 # Active Professional Projects
+* [TipOUT.me](https://www.tipout.me/) - DEPLOYED
 * Electronic Counter Application for Coyote Valley Sporting Clays in Morgan Hill
   * Description: A collaborative desktop application which stores and tracks electronic counter cards on the client's multiple POS systems.  Database will be stored on the local server and permit live syncing from all systems.
   * Technologies: Atom Electron, PouchDB, Node, Express, Angular
-* Tippity Calculator
 
 # JS
 * ColorChanger (PersonalStudy/webDev/JS/JS_ColorChanger)
