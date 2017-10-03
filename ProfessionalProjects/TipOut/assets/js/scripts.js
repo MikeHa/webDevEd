@@ -45,8 +45,8 @@ var tipOutPercent = {
   }
 };
 
-var extraTip = {
   // baristas and backwaiters additional fixed dollar tips
+var extraTip = {
   barista: 10,
   backwaiter: 4
 };
@@ -73,6 +73,9 @@ var calculationsAutoGrat = {
   backwaiter: 0
 };
 
+var barTransferPercent = 0.15;
+
+
 // Calculations
 function calculateTippableSales(total, transfers) {
   return total - transfers;
@@ -81,6 +84,16 @@ function calculateTippableSales(total, transfers) {
 function calculateTipOut(sales, percent) {
   return (Math.ceil(sales * percent) / 100).toFixed(2);
 }
+
+function calculateNormalBarTipOut() {
+  return (Math.ceil(normal.transfers * barTransferPercent).toFixed(2));
+}
+
+function calculateAutoGratBarTipOut() {
+  return (Math.ceil(autograt.transfers * barTransferPercent).toFixed(2));
+}
+
+
 
 // get integer value from id
 function num(id) {
@@ -136,17 +149,19 @@ function calculateAll() {
   // Binding Data to span
   document.getElementById("normalhousefee").innerHTML = "N/A";
   document.getElementById("autograthousefee").innerHTML = calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.house);
-  document.getElementById("normalbar").innerHTML = calculateTipOut(normal.tippableSales, tipOutPercent.normal.bar);
-  document.getElementById("autogratbar").innerHTML = calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.bar);
+  document.getElementById("normalbar").innerHTML = (Number(calculateTipOut(normal.tippableSales, tipOutPercent.normal.bar)) + Number(calculateNormalBarTipOut())).toFixed(2);
+  document.getElementById("autogratbar").innerHTML = (Number(calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.bar)) + Number(calculateAutoGratBarTipOut())).toFixed(2)
   document.getElementById("normalrunner").innerHTML = calculateTipOut(normal.tippableSales, tipOutPercent.normal.runner);
   document.getElementById("autogratrunner").innerHTML = calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.runner);
+  // SUBTRACT WINE TRANSFERS
   document.getElementById("normalsomm").innerHTML = calculateTipOut(normal.tippableWineSales, tipOutPercent.normal.somm);
   document.getElementById("autogratsomm").innerHTML = calculateTipOut(autograt.tippableWineSales, tipOutPercent.autograt.somm);
+  // HERE
   document.getElementById("normalhost").innerHTML = calculateTipOut(normal.tippableSales, tipOutPercent.normal.host);
   document.getElementById("autograthost").innerHTML = calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.host);
   document.getElementById("normalbarista").innerHTML = calculateTipOut(normal.tippableSales,tipOutPercent.normal.barista);
   document.getElementById("autogratbarista").innerHTML = calculateTipOut(autograt.tippableSales,tipOutPercent.autograt.barista);
-  document.getElementById("normalbackwaiter").innerHTML = Number(calculateTipOut(normal.tippableSales, tipOutPercent.normal.backwaiter)) + Number(normal.backwaiterBump);
+  document.getElementById("normalbackwaiter").innerHTML = (Number(calculateTipOut(normal.tippableSales, tipOutPercent.normal.backwaiter)) + Number(normal.backwaiterBump)).toFixed(2);
   document.getElementById("autogratbackwaiter").innerHTML = (Number(calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.backwaiter)) + Number(autograt.backwaiterBump)).toFixed(2);
 
   // Extra Fixed Tips for two departments
@@ -158,8 +173,6 @@ function calculateAll() {
     return document.getElementById(name).innerHTML;
   }
   
-  var subPosition = ["bar", "runner", "somm", "host", "barista", "backwaiter", "autograthousefee"];
-  
   document.getElementById("normaldeclared").innerHTML = (normal.ccTips -
     get("normalbar") - get("normalrunner") - get("normalsomm") - get("normalhost") - get("normalbarista") - get("normalbackwaiter")).toFixed(2);
   
@@ -169,6 +182,7 @@ function calculateAll() {
 }
 
 // Calculation onEvent
+
 $(".calculate").on('click touchstart', function() {
   calculateAll();
   $("html,body").animate({ 

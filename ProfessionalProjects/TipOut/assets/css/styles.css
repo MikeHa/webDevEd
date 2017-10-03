@@ -59,3 +59,8 @@ footer {
   height: 50px;
   padding: 10px;
 }
+
+
+#salesinfo, #results {
+  margin-bottom: -20px;
+}

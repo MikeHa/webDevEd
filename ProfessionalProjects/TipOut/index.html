@@ -90,60 +90,62 @@
       <button class="button expand calculate">Calculate</button>
     </div>
 <!-- Tabulated Section-->
-    <div class="row" id="results">
-      <table>
-        <thead>
+    <div class="fullheight">
+      <div class="row" id="results">
+        <table>
+          <thead>
+            <tr>
+              <th class="text-center">Normal</th>
+              <th class="text-center">AutoGrat</th>
+            </tr>
+          </thead>
           <tr>
-            <th class="text-center">Normal</th>
-            <th class="text-center">AutoGrat</th>
+            <td>Declared: <span id="normaldeclared">0.00</span></td>
+            <td>Declared: <span id="autogratdeclared">0.00</td>
           </tr>
-        </thead>
-        <tr>
-          <td>Declared: <span id="normaldeclared">0.00</span></td>
-          <td>Declared: <span id="autogratdeclared">0.00</td>
-        </tr>
-        <tr>
-          <td>House Fee: <span id="normalhousefee">N/A</span></td>
-          <td>House Fee: <span id="autograthousefee">0.00</span></td>
-        </tr>
-        <tr>
-          <td>Bar: <span id="normalbar">0.00</span></td>
-          <td>Bar: <span id="autogratbar">0.00</span></td>
-        </tr>
-        <tr>
-          <td>Runner: <span id="normalrunner">0.00</span></td>
-          <td>Runner: <span id="autogratrunner">0.00</span></td>
-        </tr>
-        <tr>
-          <td>Somm: <span id="normalsomm">0.00</span></td>
-          <td>Somm: <span id="autogratsomm">0.00</span></td>
-        </tr>
-        <tr>
-          <td>Host: <span id="normalhost">0.00</span></td>
-          <td>Host: <span id="autograthost">0.00</span></td>
-        </tr>
-        <tr>
-          <td>Barista: <span id="normalbarista">0.00</span></td>
-          <td>Barista: <span id="autogratbarista">0.00</span></td>
-        </tr>
-        <tr>
-          <td>BW: <span id="normalbackwaiter">0.00</span></td>
-          <td>BW: <span id="autogratbackwaiter">0.00</span></td>
-        </tr>
-        <tr>
-          <td>
-            <label><strong>+BW Bump</strong></label>
-            <input type="tel" placeholder="0" id="normalbackwaiterbump">
-          </td>
-          <td>
-            <label><strong>+BW Bump</strong></label>
-            <input type="tel" placeholder="0" id="autogratbackwaiterbump">
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="row buttonrow">
-      <button class="button expand calculate">Bump It Up</button>
+          <tr>
+            <td>House Fee: <span id="normalhousefee">N/A</span></td>
+            <td>House Fee: <span id="autograthousefee">0.00</span></td>
+          </tr>
+          <tr>
+            <td>Bar: <span id="normalbar">0.00</span></td>
+            <td>Bar: <span id="autogratbar">0.00</span></td>
+          </tr>
+          <tr>
+            <td>Runner: <span id="normalrunner">0.00</span></td>
+            <td>Runner: <span id="autogratrunner">0.00</span></td>
+          </tr>
+          <tr>
+            <td>Somm: <span id="normalsomm">0.00</span></td>
+            <td>Somm: <span id="autogratsomm">0.00</span></td>
+          </tr>
+          <tr>
+            <td>Host: <span id="normalhost">0.00</span></td>
+            <td>Host: <span id="autograthost">0.00</span></td>
+          </tr>
+          <tr>
+            <td>Barista: <span id="normalbarista">0.00</span></td>
+            <td>Barista: <span id="autogratbarista">0.00</span></td>
+          </tr>
+          <tr>
+            <td>BW: <span id="normalbackwaiter">0.00</span></td>
+            <td>BW: <span id="autogratbackwaiter">0.00</span></td>
+          </tr>
+          <tr>
+            <td>
+              <label><strong>+BW Bump</strong></label>
+              <input type="tel" placeholder="0" id="normalbackwaiterbump">
+            </td>
+            <td>
+              <label><strong>+BW Bump</strong></label>
+              <input type="tel" placeholder="0" id="autogratbackwaiterbump">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="row buttonrow">
+        <button class="button expand calculate">Bump It Up</button>
+      </div>
     </div>
   </div>
 
