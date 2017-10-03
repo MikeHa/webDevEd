@@ -5,12 +5,13 @@ Hi, my name is Mike Ha.
 * Electronic Counter Application for Coyote Valley Sporting Clays in Morgan Hill
   * Description: A collaborative desktop application which stores and tracks electronic counter cards on the client's multiple POS systems.  Database will be stored on the local server and permit live syncing from all systems.
   * Technologies: Atom Electron, PouchDB, Node, Express, Angular
+* Tippity Calculator
 
 # JS
-* ColorChanger (webDev/JS/JS_ColorChanger)
-* Score Keeper (webDev/JS/Project_ScoreKeeper)
-* ColorGame (webDev/JS/Project_ColorGame)
-* Patatap Clone (webDev/JS/Patatap Clone)
+* ColorChanger (PersonalStudy/webDev/JS/JS_ColorChanger)
+* Score Keeper (PersonalStudy/webDev/JS/Project_ScoreKeeper)
+* ColorGame (PersonalStudy/webDev/JS/Project_ColorGame)
+* Patatap Clone (PersonalStudy/webDev/JS/Patatap Clone)
 
 # Node / Express / Mongoose
 * YelpCamp
@@ -24,6 +25,4 @@ Hi, my name is Mike Ha.
 
 # In the Pipeline
 * [Build out Dekibook.com with the MEAN Stack](https://www.dekibook.com)
-* Start iOS
-* Tippity Calculator
 * Banquet Sheet Generator

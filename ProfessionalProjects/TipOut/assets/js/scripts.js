@@ -128,7 +128,7 @@ function extraFixedBackwaiter() {
 
 // Calculations
 function calculateAll() {
-  //Data
+  // Data
   normal.totalSales = num("#normaltotalsales");
   normal.wineSales = num("#normalwinesales");
   normal.ccTips = num("#normalcctips");
@@ -153,10 +153,8 @@ function calculateAll() {
   document.getElementById("autogratbar").innerHTML = (Number(calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.bar)) + Number(calculateAutoGratBarTipOut())).toFixed(2)
   document.getElementById("normalrunner").innerHTML = calculateTipOut(normal.tippableSales, tipOutPercent.normal.runner);
   document.getElementById("autogratrunner").innerHTML = calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.runner);
-  // SUBTRACT WINE TRANSFERS
   document.getElementById("normalsomm").innerHTML = calculateTipOut(normal.tippableWineSales, tipOutPercent.normal.somm);
   document.getElementById("autogratsomm").innerHTML = calculateTipOut(autograt.tippableWineSales, tipOutPercent.autograt.somm);
-  // HERE
   document.getElementById("normalhost").innerHTML = calculateTipOut(normal.tippableSales, tipOutPercent.normal.host);
   document.getElementById("autograthost").innerHTML = calculateTipOut(autograt.tippableSales, tipOutPercent.autograt.host);
   document.getElementById("normalbarista").innerHTML = calculateTipOut(normal.tippableSales,tipOutPercent.normal.barista);
@@ -193,4 +191,13 @@ $(".calculate").on('click touchstart', function() {
 $("input").on("keydown", function(e) {
   if (e.which == 13) {
     calculateAll();
+    $("html,body").animate({
+      scrollTop: $("#results").offset().top
+    },
+      'slow');
   }})
+
+// Disable Pinch to Zoom on Mobile devices
+document.addEventListener('gesturestart', function (e) { 
+  e.preventDefault(); 
+});
