@@ -67,3 +67,7 @@ footer {
 #salesinfo, #results {
   margin-bottom: -20px;
 }
+
+.smallerfont {
+  font-size: 80%;
+}
