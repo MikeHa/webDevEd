@@ -115,21 +115,21 @@ function getNum(id){
 function extraFixedBarista() {
   var normalBarista = getNum("normalbarista");
   var autoBarista = getNum("autogratbarista");
-  if (normalBarista > 0) {
-    document.getElementById("normalbarista").innerHTML = (Number(normalBarista) + extraTip.barista).toFixed(2);
-  } else if (autoBarista > 0) {
+  if (autoBarista > 0) {
     document.getElementById("autogratbarista").innerHTML = (Number(autoBarista) + extraTip.barista).toFixed(2);
+  } else if (normalBarista > 0) {
+    document.getElementById("normalbarista").innerHTML = (Number(normalBarista) + extraTip.barista).toFixed(2);
   }
 }
 
 function extraFixedBackwaiter() {
   var normalBW = getNum("normalbackwaiter");
   var autoBW = getNum("autogratbackwaiter");
-  if (normalBW > 0) {
-    document.getElementById("normalbackwaiter").innerHTML = (Number(normalBW) + extraTip.backwaiter).toFixed(2);
-  } else if (autoBW > 0) {
+  if (autoBW > 0) {
     document.getElementById("autogratbackwaiter").innerHTML = (Number(autoBW) + extraTip.backwaiter).toFixed(2);
-  }
+  } else if (normalBW > 0) {
+    document.getElementById("normalbackwaiter").innerHTML = (Number(normalBW) + extraTip.backwaiter).toFixed(2);
+  } 
 }
 
 // Calculations
@@ -188,21 +188,29 @@ function calculateAll() {
 // Calculation onEvent
 $(".calculate").on('click touchstart', function() {
   calculateAll();
-  $("html,body").animate({ 
-    scrollTop: $("#results").offset().top }, 
-    'slow');
+  $("html,body").animate({ scrollTop: $("#results").offset().top }, "slow");
 })
 
 $("input").on("keydown", function(e) {
   if (e.which == 13) {
     calculateAll();
-    $("html,body").animate({
-      scrollTop: $("#results").offset().top
-    },
-      'slow');
-  }})
+    $("html,body").animate({ scrollTop: $("#results").offset().top }, "slow");
+  }
+})
+
+$("#twoserver").on("click touchstart", function() {
+  tipOutPercent.normal.backwaiter = 3.5;
+  tipOutPercent.autograt.backwaiter = 3.25;
+  calculateAll();
+});
+
+$("#threeserver").on("click touchstart", function(){
+  tipOutPercent.normal.backwaiter = 3;
+  tipOutPercent.autograt.backwaiter = 2.75;
+  calculateAll();
+})
 
 // Disable Pinch to Zoom on Mobile devices
 document.addEventListener('gesturestart', function (e) { 
   e.preventDefault(); 
-});
+})
